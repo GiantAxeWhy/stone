@@ -12,14 +12,14 @@
     </tr>
   </thead>
   <draggable v-model="tablelist" element="tbody" :move="getdata" @update="datadragEnd">
-    <tr v-for="(item,id) in tablelist" :key="id" class="custom-title cusstom-top-title custom-bottom">
+    <tr v-for="(item,index) in tablelist" :key="index" class="custom-title cusstom-top-title custom-bottom">
       <td class="custom-title">{{item.name}}</td>
       <td class="custom-title">{{item.time}}</td>
       <td class="custom-title">{{item.num}}</td>
       <td class="custom-title">
         <div class="tabopa">
           <a @click="add"> <i class="el-icon-plus"></i></a>
-          <a @click="open2"> <i class="el-icon-close"></i></a>
+          <a @click="remove(index,tablelist)"> <i class="el-icon-close"></i></a>
           <a @click="open2"> <i class="el-icon-rank"></i></a>
         </div>
       </td>
@@ -46,7 +46,7 @@ data(){
       { id: 4, name:"客户消息4", time:"2018-08-25 14：54", num:"40" }
     ],
           tableItem:{
-            id: 4,
+            id: 5,
             name: '王小虎1',
             time:"2018-08-25 14：54", num:"1000"
           },
@@ -66,8 +66,13 @@ mounted() {
       console.log("拖动后的索引 :" + evt.newIndex);
       console.log(this.tags);
     },
-    open2(){},
-    add(){}
+    remove(index, rows){
+       rows.splice(index, 1);
+    },
+    add(){
+      this.tablelist.push(this.tableItem)
+    },
+    open2(){}
     },
 }
 </script>
