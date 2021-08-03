@@ -49,7 +49,11 @@ module.exports = {
               plugins:[require('autoprefixer')]
             }
           },'less-loader']
-        }
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+          use: ['file-loader']
+  }
       ]
     },
     resolve:{
